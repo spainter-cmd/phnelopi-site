@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>New System · Εξοπλισμός καταστημάτων — Online κατάστημα</title>
+  <meta name="description" content="New System — ο ειδικός στον εξοπλισμό καταστημάτων από το 1978. Ραφιέρες, slatwall, κούκλες βιτρίνας, κρεμάστρες, σταντ, καθρέπτες, plexiglass. Τιμές χονδρικής B2B, αποστολή πανελλαδικά από τη Θεσσαλονίκη.">
+  <meta name="theme-color" content="#0b2545">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<!-- Εικονίδια (sprite) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-mannequin" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="10" r="6"/><path d="M32 16v4M20 23q12-5 24 0l-3 9q-1 4 1 8l-3 7H25l-3-7q2-4 1-8z"/><path d="M32 47v10M22 58h20"/></g></symbol>
+    <symbol id="i-hanger" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M26.5 15a5.5 5.5 0 1 1 5.5 5.5V25"/><path d="M32 25 7 44q-3 3 1 4h48q4-1 1-4z"/></g></symbol>
+    <symbol id="i-shelf" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v52M52 6v52M12 20h40M12 36h40M12 52h40"/><rect x="17" y="10" width="9" height="10" rx="1"/><rect x="30" y="13" width="8" height="7" rx="1"/><rect x="36" y="26" width="11" height="10" rx="1"/><rect x="18" y="43" width="14" height="9" rx="1"/></g></symbol>
+    <symbol id="i-slat" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="8" width="50" height="48" rx="3"/><path d="M7 18h50M7 28h50M7 38h50M7 48h50"/><path d="M20 28v8M44 18v8" stroke-width="3.4"/></g></symbol>
+    <symbol id="i-rail" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14h48M12 14v40M52 14v40M6 54h12M46 54h12"/><path d="M22 14v4l-6 8h12zM34 14v4l-6 8h12zM46 14v4l-6 8"/></g></symbol>
+    <symbol id="i-mirror" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="19" y="4" width="26" height="46" rx="13"/><path d="M27 16l6-5M27 26l11-9"/><path d="M32 50v6M22 58l10-2 10 2"/></g></symbol>
+    <symbol id="i-plexi" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h28l-4 40H22z"/><path d="M10 48h44l-4 8H14z"/><path d="M25 16h14M26 24h12"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 5 53 13v16c0 14-9 23-21 29C20 52 11 43 11 29V13z"/><path d="m22 31 7 7 13-14"/></g></symbol>
+    <symbol id="i-cube" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 5 55 18v28L32 59 9 46V18z"/><path d="m9 18 23 13 23-13M32 31v28"/><path d="M20 12l23 13" stroke-dasharray="3 5"/></g></symbol>
+    <symbol id="i-tag" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h22l26 26-22 22L8 30z"/><circle cx="19" cy="19" r="4"/></g></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5 9-10"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></g></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.3"/><circle cx="17" cy="20.5" r="1.3"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 20s-7-4.4-9.2-9A5 5 0 0 1 12 6a5 5 0 0 1 9.2 5c-2.2 4.6-9.2 9-9.2 9z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></g></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h12v10H2zM14 10h4l4 3v3h-8"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></g></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 21V10l6 4V10l6 4V4h4v17z"/><path d="M6 17h2M11 17h2M16 17h2"/></g></symbol>
+    <symbol id="i-badge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"/></g></symbol>
+    <symbol id="i-percent" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></g></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 4h6a3 3 0 0 1 2 1 3 3 0 0 1 2-1h6v15h-6a2 2 0 0 0-2 2 2 2 0 0 0-2-2H4z"/><path d="M12 5v16"/></g></symbol>
+    <symbol id="i-shirt" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M8 3 3 6l2 4 2-1v11h10V9l2 1 2-4-5-3a4 4 0 0 1-8 0z"/></symbol>
+    <symbol id="i-basket" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 10h18l-2 10H5zM8 10l3-6M16 10l-3-6"/><path d="M9 14v3M12 14v3M15 14v3" stroke-linecap="round"/></g></symbol>
+    <symbol id="i-pharmacy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></g></symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M7 4h10l4 5-9 11L3 9zM3 9h18M9 4l3 5 3-5M9 9l3 11 3-11"/></symbol>
+    <symbol id="i-expo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 20h18M5 20V9h14v11"/><path d="M3 9 12 3l9 6"/><path d="M9 20v-5h6v5"/></g></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></g></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+
+<!-- ===== Μπάρα κορυφής ===== -->
+<div class="topbar">
+  <div class="wrap topbar__inner">
+    <ul class="topbar__usp">
+      <li><svg><use href="#i-truck"/></svg> Αποστολή πανελλαδικά — δωρεάν άνω των 150€</li>
+      <li><svg><use href="#i-clock"/></svg> Παράδοση σε 1–3 εργάσιμες</li>
+      <li><svg><use href="#i-badge"/></svg> Από το 1978 στη Θεσσαλονίκη</li>
+    </ul>
+    <ul class="topbar__links">
+      <li class="topbar__tools">
+        <div class="vat" role="group" aria-label="Εμφάνιση τιμών"><span>Τιμές</span><button type="button" class="vat__btn" data-vat="ex" aria-pressed="true">χωρίς ΦΠΑ</button><button type="button" class="vat__btn" data-vat="inc" aria-pressed="false">με ΦΠΑ</button></div>
+        <div class="vat" role="group" aria-label="Τύπος πελάτη"><button type="button" class="vat__btn" data-mode="b2c" aria-pressed="false">Λιανική</button><button type="button" class="vat__btn" data-mode="b2b" aria-pressed="true">B2B</button></div>
+      </li>
+      <li><a href="#b2b">Λογαριασμός B2B</a></li>
+      <li><a href="#guides">Οδηγοί</a></li>
+      <li><a href="#contact">Επικοινωνία</a></li>
+      <li><a class="topbar__phone" href="tel:+302310541741"><svg><use href="#i-phone"/></svg> 2310 541 741</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== Header ===== -->
+<header class="header" id="top">
+  <div class="wrap header__inner">
+    <button class="burger" type="button" id="burger" aria-label="Μενού" aria-controls="drawer" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+
+    <a class="logo" href="#top" aria-label="New System — αρχική">
+      <span class="logo__mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 8h28v5H6zM6 18h28v5H6zM6 28h28v5H6z" fill="currentColor"/><path d="M11 13v5M29 23v5" stroke="currentColor" stroke-width="3"/></svg></span>
+      <span class="logo__text"><b>New System</b><small>Εξοπλισμός καταστημάτων</small></span>
+    </a>
+
+    <form class="search" id="search" role="search" autocomplete="off">
+      <label class="visually-hidden" for="q">Αναζήτηση προϊόντων</label>
+      <input class="search__input" id="q" type="search" placeholder="Αναζήτησε προϊόντα, π.χ. slatwall, κρεμάστρες, κούκλες…" aria-autocomplete="list" aria-controls="suggest" aria-expanded="false">
+      <button class="search__btn" type="submit"><svg><use href="#i-search"/></svg><span>Αναζήτηση</span></button>
+      <ul class="suggest" id="suggest" role="listbox" hidden></ul>
+    </form>
+
+    <div class="header__actions">
+      <a class="hact" href="#b2b"><svg><use href="#i-user"/></svg><span><small>Λογαριασμός</small><b>Είσοδος B2B</b></span></a>
+      <button class="hact" type="button" id="wishBtn" aria-label="Αγαπημένα"><svg><use href="#i-heart"/></svg><span><small>Λίστα</small><b>Αγαπημένα</b></span><i class="count" id="wishCount" hidden>0</i></button>
+      <button class="hact hact--cart" type="button" id="cartBtn" aria-controls="cart" aria-label="Καλάθι"><svg><use href="#i-cart"/></svg><span><small>Καλάθι</small><b id="cartTotalMini">0,00 €</b></span><i class="count" id="cartCount" hidden>0</i></button>
+    </div>
+  </div>
+
+  <!-- Κύριο μενού με mega menu -->
+  <nav class="nav" aria-label="Κατηγορίες προϊόντων">
+    <div class="wrap nav__inner">
+      <ul class="nav__list" id="navList"></ul>
+    </div>
+    <div class="mega" id="mega" hidden><div class="wrap mega__inner"></div></div>
+  </nav>
+</header>
+
+<!-- Μενού κινητού -->
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Μενού">
+    <header class="drawer__head">
+      <b>Κατηγορίες</b>
+      <button class="iconbtn" type="button" id="drawerClose" aria-label="Κλείσιμο"><svg><use href="#i-close"/></svg></button>
+    </header>
+    <div class="drawer__body" id="drawerBody"></div>
+    <footer class="drawer__foot">
+      <a class="btn btn--primary btn--block" href="#b2b">Είσοδος / Αίτηση B2B</a>
+      <a class="drawer__phone" href="tel:+302310541741"><svg><use href="#i-phone"/></svg> 2310 541 741</a>
+    </footer>
+  </div>
+  <button class="drawer__backdrop" type="button" aria-label="Κλείσιμο μενού"></button>
+</div>
+
+<main id="main">
+
+  <!-- ===== Hero: κεντρικό banner + 2 promo ===== -->
+  <section class="hero wrap">
+    <div class="hero__main">
+      <div class="hero__copy">
+        <p class="eyebrow">Ο ειδικός στον εξοπλισμό καταστημάτων</p>
+        <h1>Όλα όσα χρειάζεται<br>το κατάστημά σου, σε ένα μέρος.</h1>
+        <p class="hero__text">Ραφιέρες, slatwall, κούκλες βιτρίνας, κρεμάστρες, σταντ και ειδικές κατασκευές από το δικό μας εργοστάσιο. Χιλιάδες κωδικοί ετοιμοπαράδοτοι, τιμές χονδρικής για επαγγελματίες.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="#categories">Δες τις κατηγορίες <svg><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--outline-light btn--lg" href="#b2b">Άνοιξε λογαριασμό B2B</a>
+        </div>
+        <ul class="hero__points">
+          <li><svg><use href="#i-check"/></svg> Έκπτωση ποσότητας</li>
+          <li><svg><use href="#i-check"/></svg> Τιμολόγιο με ΑΦΜ</li>
+          <li><svg><use href="#i-check"/></svg> Δικό μας εργοστάσιο</li>
+        </ul>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <div class="hero__shelf"><svg><use href="#i-shelf"/></svg></div>
+        <div class="hero__float hero__float--1"><svg><use href="#i-mannequin"/></svg></div>
+        <div class="hero__float hero__float--2"><svg><use href="#i-hanger"/></svg></div>
+        <div class="hero__float hero__float--3"><svg><use href="#i-slat"/></svg></div>
+      </div>
+    </div>
+    <a class="promo promo--red" href="#products" data-tab="offer">
+      <span class="promo__kicker">Προσφορές μήνα</span>
+      <span class="promo__title">Έως −30% σε κρεμάστρες &amp; slatwall</span>
+      <span class="promo__link">Δες τις προσφορές <svg><use href="#i-arrow"/></svg></span>
+      <svg class="promo__bg"><use href="#i-percent"/></svg>
+    </a>
+    <a class="promo promo--navy" href="#custom">
+      <span class="promo__kicker">Ειδικές κατασκευές</span>
+      <span class="promo__title">Ταμεία, βιτρίνες &amp; έπιπλα στα μέτρα σου</span>
+      <span class="promo__link">Ζήτα προσφορά <svg><use href="#i-arrow"/></svg></span>
+      <svg class="promo__bg"><use href="#i-cube"/></svg>
+    </a>
+  </section>
+
+  <!-- ===== Μπάρα εμπιστοσύνης ===== -->
+  <section class="trust" aria-label="Γιατί New System">
+    <ul class="wrap trust__list">
+      <li><svg><use href="#i-truck"/></svg><div><b>Αποστολή πανελλαδικά</b><small>Δωρεάν για παραγγελίες άνω των 150€ χωρίς ΦΠΑ</small></div></li>
+      <li><svg><use href="#i-clock"/></svg><div><b>Γρήγορη παράδοση</b><small>Ετοιμοπαράδοτα σε 1–3 εργάσιμες ημέρες</small></div></li>
+      <li><svg><use href="#i-percent"/></svg><div><b>Τιμές χονδρικής</b><small>Κλιμακωτές εκπτώσεις ποσότητας για B2B</small></div></li>
+      <li><svg><use href="#i-factory"/></svg><div><b>Δικό μας εργοστάσιο</b><small>Παραγωγή &amp; ειδικές κατασκευές στη Θεσσαλονίκη</small></div></li>
+      <li><svg><use href="#i-star"/></svg><div><b>4,8 / 5 από πελάτες</b><small>Βάσει 312 αξιολογήσεων</small></div></li>
+    </ul>
+  </section>
+
+  <!-- ===== Κατηγορίες ===== -->
+  <section class="section wrap" id="categories">
+    <header class="section__head">
+      <h2>Αγορές ανά κατηγορία</h2>
+      <a class="section__more" href="#categories">Όλες οι κατηγορίες <svg><use href="#i-arrow"/></svg></a>
+    </header>
+    <div class="catgrid" id="catgrid"></div>
+  </section>
+
+  <!-- ===== Προϊόντα ===== -->
+  <section class="section wrap" id="products">
+    <header class="section__head section__head--tabs">
+      <h2 id="productsTitle">Τα πιο δημοφιλή</h2>
+      <div class="tabs" role="tablist" aria-label="Προβολή προϊόντων">
+        <button type="button" class="tab" role="tab" data-tab="top" aria-selected="true">Best sellers</button>
+        <button type="button" class="tab" role="tab" data-tab="new" aria-selected="false">Νέα προϊόντα</button>
+        <button type="button" class="tab" role="tab" data-tab="offer" aria-selected="false">Προσφορές</button>
+      </div>
+    </header>
+    <p class="results" id="results" hidden></p>
+    <div class="pgrid" id="pgrid"></div>
+    <p class="section__foot"><a class="btn btn--outline" href="#categories">Δες όλα τα προϊόντα <svg><use href="#i-arrow"/></svg></a></p>
+  </section>
+
+  <!-- ===== B2B ===== -->
+  <section class="b2b" id="b2b">
+    <div class="wrap b2b__inner">
+      <div class="b2b__copy">
+        <p class="eyebrow eyebrow--light">Για επαγγελματίες</p>
+        <h2>Λογαριασμός B2B: τιμές χονδρικής, τιμολόγιο, πίστωση.</h2>
+        <p>Αν έχεις κατάστημα, αλυσίδα ή κατασκευαστική, άνοιξε λογαριασμό B2B και δες τις τιμές χονδρικής σε όλο τον κατάλογο. Η έγκριση γίνεται εντός μίας εργάσιμης.</p>
+        <ul class="b2b__perks">
+          <li><svg><use href="#i-check"/></svg><div><b>Τιμές χονδρικής σε 2.000+ κωδικούς</b><small>και κλιμακωτές εκπτώσεις ποσότητας</small></div></li>
+          <li><svg><use href="#i-check"/></svg><div><b>Προσωπικός σύμβουλος πωλήσεων</b><small>για προσφορές και μελέτη καταστήματος</small></div></li>
+          <li><svg><use href="#i-check"/></svg><div><b>Τιμολόγηση &amp; όροι πληρωμής</b><small>κατάθεση, πίστωση ή αντικαταβολή</small></div></li>
+          <li><svg><use href="#i-check"/></svg><div><b>Επαναλαμβανόμενες παραγγελίες</b><small>αποθηκευμένες λίστες για γρήγορη αγορά</small></div></li>
+        </ul>
+      </div>
+      <form class="b2b__form" id="b2bForm" novalidate>
+        <h3>Αίτηση λογαριασμού B2B</h3>
+        <p class="b2b__form-sub">Συμπλήρωσε τα στοιχεία και θα επικοινωνήσουμε μαζί σου.</p>
+        <div class="field"><label for="f-company">Επωνυμία επιχείρησης</label><input id="f-company" name="company" type="text" required placeholder="π.χ. Fashion Point ΙΚΕ"></div>
+        <div class="field-row">
+          <div class="field"><label for="f-afm">ΑΦΜ</label><input id="f-afm" name="afm" type="text" inputmode="numeric" pattern="[0-9]{9}" required placeholder="9 ψηφία"></div>
+          <div class="field"><label for="f-phone">Τηλέφωνο</label><input id="f-phone" name="phone" type="tel" required placeholder="69xxxxxxxx"></div>
+        </div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required placeholder="name@company.gr"></div>
+        <div class="field"><label for="f-type">Τύπος επιχείρησης</label>
+          <select id="f-type" name="type"><option>Κατάστημα ρούχων / υπόδησης</option><option>Σούπερ μάρκετ / mini market</option><option>Φαρμακείο</option><option>Κοσμηματοπωλείο</option><option>Αλυσίδα καταστημάτων</option><option>Κατασκευαστική / διακοσμητής</option><option>Άλλο</option></select>
+        </div>
+        <button class="btn btn--primary btn--block btn--lg" type="submit">Αποστολή αίτησης</button>
+        <p class="b2b__form-note" aria-live="polite"></p>
+        <p class="b2b__form-small">Έχεις ήδη λογαριασμό; <a href="#b2b">Είσοδος B2B</a></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== Ανά κλάδο ===== -->
+  <section class="section wrap" id="sectors">
+    <header class="section__head">
+      <h2>Αγορές ανά κλάδο</h2>
+      <p class="section__sub">Έτοιμες λύσεις ανάλογα με το είδος του καταστήματος.</p>
+    </header>
+    <ul class="sectors">
+      <li><a href="#categories"><svg><use href="#i-shirt"/></svg><b>Ρούχα &amp; υπόδηση</b><small>Κούκλες, κρεμάστρες, καλόγεροι</small></a></li>
+      <li><a href="#categories"><svg><use href="#i-basket"/></svg><b>Σούπερ μάρκετ &amp; mini market</b><small>Γόνδολες, ράφια, ταμεία</small></a></li>
+      <li><a href="#categories"><svg><use href="#i-pharmacy"/></svg><b>Φαρμακεία</b><small>Ραφιέρες, βιτρίνες, σήμανση</small></a></li>
+      <li><a href="#categories"><svg><use href="#i-gem"/></svg><b>Κοσμηματοπωλεία</b><small>Βιτρίνες, βάσεις, plexiglass</small></a></li>
+      <li><a href="#categories"><svg><use href="#i-book"/></svg><b>Βιβλιοπωλεία &amp; χαρτικά</b><small>Σταντ, slatwall, θήκες</small></a></li>
+      <li><a href="#categories"><svg><use href="#i-expo"/></svg><b>Εκθέσεις &amp; pop-up</b><small>Τροχήλατα, gridwall, πτυσσόμενα</small></a></li>
+    </ul>
+  </section>
+
+  <!-- ===== Ειδικές κατασκευές ===== -->
+  <section class="custom" id="custom">
+    <div class="wrap custom__inner">
+      <div class="custom__art" aria-hidden="true"><svg><use href="#i-cube"/></svg></div>
+      <div class="custom__copy">
+        <p class="eyebrow">Ειδικές κατασκευές</p>
+        <h2>Από τη μελέτη ως το άνοιγμα του καταστήματος.</h2>
+        <p>Ταμεία, βιτρίνες, ραφιέρες στα μέτρα σου και πλήρης εξοπλισμός καταστήματος από το εργοστάσιό μας στη Θεσσαλονίκη. Στέλνεις κάτοψη, παίρνεις 3D μελέτη και προσφορά.</p>
+        <ol class="steps">
+          <li><b>1</b><span>Στέλνεις κάτοψη ή φωτογραφίες</span></li>
+          <li><b>2</b><span>Παίρνεις 3D μελέτη &amp; προσφορά</span></li>
+          <li><b>3</b><span>Κατασκευή στο εργοστάσιό μας</span></li>
+          <li><b>4</b><span>Μεταφορά &amp; τοποθέτηση</span></li>
+        </ol>
+        <a class="btn btn--primary" href="mailto:info@newsystem.gr?subject=Ζήτηση%20προσφοράς%20για%20ειδική%20κατασκευή">Ζήτα προσφορά <svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Αξιολογήσεις ===== -->
+  <section class="section wrap" id="reviews">
+    <header class="section__head">
+      <h2>Τι λένε οι πελάτες μας</h2>
+      <p class="section__sub"><span class="stars" aria-label="4,8 στα 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span> <b>4,8 / 5</b> από 312 αξιολογήσεις</p>
+    </header>
+    <ul class="reviews">
+      <li><div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><p>«Παραγγείλαμε ραφιέρες και slatwall για δύο καταστήματα. Ήρθαν σε 2 μέρες, όλα συσκευασμένα σωστά και με οδηγίες.»</p><footer><b>Γιώργος Κ.</b><small>Κατάστημα ρούχων, Λάρισα</small></footer></li>
+      <li><div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><p>«Μας έφτιαξαν ταμείο και βιτρίνα στα μέτρα του φαρμακείου. Η 3D μελέτη βοήθησε πολύ να αποφασίσουμε.»</p><footer><b>Μαρία Π.</b><small>Φαρμακείο, Θεσσαλονίκη</small></footer></li>
+      <li><div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><p>«Οι τιμές χονδρικής στις κρεμάστρες είναι οι καλύτερες που βρήκαμε. Σταθερός συνεργάτης για όλα τα μαγαζιά μας.»</p><footer><b>Νίκος Δ.</b><small>Αλυσίδα καταστημάτων, Αθήνα</small></footer></li>
+    </ul>
+  </section>
+
+  <!-- ===== Οδηγοί ===== -->
+  <section class="section section--alt" id="guides">
+    <div class="wrap">
+      <header class="section__head">
+        <h2>Οδηγοί &amp; συμβουλές</h2>
+        <a class="section__more" href="#guides">Όλα τα άρθρα <svg><use href="#i-arrow"/></svg></a>
+      </header>
+      <ul class="guides">
+        <li><a href="#guides"><span class="guides__img" style="--c:#4f7cff"><svg><use href="#i-slat"/></svg></span><small>Οδηγός αγοράς</small><b>Slatwall ή gridwall; Τι ταιριάζει στον τοίχο σου</b><span class="guides__read">Διάβασε <svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#guides"><span class="guides__img" style="--c:#e4261c"><svg><use href="#i-mannequin"/></svg></span><small>Visual merchandising</small><b>Πώς στήνεις μια βιτρίνα που φέρνει κόσμο μέσα</b><span class="guides__read">Διάβασε <svg><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="#guides"><span class="guides__img" style="--c:#2ec4a6"><svg><use href="#i-shelf"/></svg></span><small>Πρακτικά</small><b>Πόσα ράφια χρειάζεται ένα mini market 60 τ.μ.;</b><span class="guides__read">Διάβασε <svg><use href="#i-arrow"/></svg></span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Newsletter ===== -->
+  <section class="newsletter">
+    <div class="wrap newsletter__inner">
+      <div><h2>Προσφορές &amp; νέα προϊόντα στο email σου</h2><p>Μία φορά τον μήνα, μόνο για επαγγελματίες. Χωρίς spam.</p></div>
+      <form class="newsletter__form" id="nlForm" novalidate>
+        <label class="visually-hidden" for="nl-email">Email</label>
+        <input id="nl-email" type="email" required placeholder="Το email σου">
+        <button class="btn btn--primary" type="submit">Εγγραφή</button>
+        <p class="newsletter__note" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer" id="contact">
+  <div class="wrap footer__grid">
+    <div class="footer__col footer__col--brand">
+      <a class="logo logo--light" href="#top"><span class="logo__mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 8h28v5H6zM6 18h28v5H6zM6 28h28v5H6z" fill="currentColor"/><path d="M11 13v5M29 23v5" stroke="currentColor" stroke-width="3"/></svg></span><span class="logo__text"><b>New System</b><small>Εξοπλισμός καταστημάτων</small></span></a>
+      <p>Εξοπλισμός καταστημάτων και ειδικές κατασκευές από το 1978. Showroom και εργοστάσιο στη Θεσσαλονίκη, αποστολές σε όλη την Ελλάδα.</p>
+      <ul class="footer__contact">
+        <li><svg><use href="#i-phone"/></svg><a href="tel:+302310541741">2310 541 741</a></li>
+        <li><svg><use href="#i-mail"/></svg><a href="mailto:info@newsystem.gr">info@newsystem.gr</a></li>
+        <li><svg><use href="#i-pin"/></svg><span>Δωδεκανήσου 3, 54626 Θεσσαλονίκη</span></li>
+        <li><svg><use href="#i-factory"/></svg><span>Εργοστάσιο: 6ο χλμ. Θεσσαλονίκης – Λαγκαδά</span></li>
+        <li><svg><use href="#i-clock"/></svg><span>Δευ–Παρ 08:30–17:00 · Σάβ 09:00–14:00</span></li>
+      </ul>
+      <div class="social"><a href="https://www.facebook.com/newsystem.gr/" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a><a href="#top" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a></div>
+    </div>
+    <details class="footer__col" open><summary>Προϊόντα</summary><ul id="footerCats"></ul></details>
+    <details class="footer__col" open><summary>Εξυπηρέτηση</summary><ul>
+      <li><a href="#contact">Επικοινωνία</a></li><li><a href="#contact">Τρόποι αποστολής</a></li><li><a href="#contact">Τρόποι πληρωμής</a></li><li><a href="#contact">Επιστροφές</a></li><li><a href="#contact">Συχνές ερωτήσεις</a></li><li><a href="#contact">Παρακολούθηση παραγγελίας</a></li>
+    </ul></details>
+    <details class="footer__col" open><summary>Εταιρεία</summary><ul>
+      <li><a href="#top">Σχετικά με εμάς</a></li><li><a href="#b2b">Λογαριασμός B2B</a></li><li><a href="#custom">Ειδικές κατασκευές</a></li><li><a href="#guides">Οδηγοί &amp; blog</a></li><li><a href="#contact">Showroom</a></li><li><a href="#contact">Όροι χρήσης</a></li><li><a href="#contact">Πολιτική απορρήτου</a></li>
+    </ul></details>
+  </div>
+  <div class="wrap footer__bottom">
+    <span>© <span id="year">2026</span> New System · Εξοπλισμός καταστημάτων · Θεσσαλονίκη</span>
+    <ul class="pay" aria-label="Τρόποι πληρωμής"><li>Visa</li><li>Mastercard</li><li>PayPal</li><li>Κατάθεση</li><li>Αντικαταβολή</li></ul>
+  </div>
+</footer>
+
+<a class="totop" href="#top" id="toTop" aria-label="Επιστροφή στην κορυφή"><svg><use href="#i-chev"/></svg></a>
+
+<!-- ===== Συρτάρι καλαθιού ===== -->
+<aside class="cart" id="cart" hidden>
+  <div class="cart__panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <header class="cart__head"><h2 id="cartTitle">Το καλάθι σου</h2><button class="iconbtn" type="button" id="cartClose" aria-label="Κλείσιμο καλαθιού"><svg><use href="#i-close"/></svg></button></header>
+    <div class="cart__items" id="cartItems"></div>
+    <footer class="cart__foot">
+      <div class="cart__ship" id="cartShip"></div>
+      <dl class="cart__sum">
+        <div><dt>Υποσύνολο (χωρίς ΦΠΑ)</dt><dd id="sumNet">0,00 €</dd></div>
+        <div><dt>ΦΠΑ 24%</dt><dd id="sumVat">0,00 €</dd></div>
+        <div class="cart__total"><dt>Σύνολο</dt><dd id="sumTotal">0,00 €</dd></div>
+      </dl>
+      <button class="btn btn--primary btn--block btn--lg" type="button" id="checkout">Ολοκλήρωση παραγγελίας</button>
+      <p class="cart__note">Τιμές B2B εφαρμόζονται σε εγκεκριμένους λογαριασμούς.</p>
+    </footer>
+  </div>
+  <button class="cart__backdrop" type="button" aria-label="Κλείσιμο καλαθιού"></button>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
