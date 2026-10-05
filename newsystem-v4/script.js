@@ -1,6 +1,6 @@
 /* =========================================================
-   New System — v4: κατηγορίες = τύποι καταστημάτων
-   (φωτογραφίες από τη σελίδα «Ανακαινίσεις»), προϊόντα μέσα σε κάθε κατάστημα
+   New System — v4: 13 κατηγορίες καταστημάτων
+   (φωτογραφίες από τον φάκελο «new system κατηγοριες»), προϊόντα μέσα σε κάθε κατηγορία
    ========================================================= */
 (() => {
   'use strict';
@@ -16,7 +16,7 @@
   const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const icon = (id) => `<svg aria-hidden="true"><use href="#${id}"/></svg>`;
   const pad = (n) => String(n).padStart(2, '0');
-  const img = (s, cls = '', lazy = true) => `<img class="${cls}" src="${s.img}" alt="${esc(s.alt)}" width="702" height="526"${lazy ? ' loading="lazy"' : ''} decoding="async">`;
+  const img = (s, cls = '', lazy = true) => `<img class="${cls}" src="${s.img}" alt="${esc(s.alt)}" width="1448" height="1086"${lazy ? ' loading="lazy"' : ''} decoding="async">`;
 
   /* =========================================================
      ΔΕΔΟΜΕΝΑ
@@ -24,94 +24,123 @@
 
   /* Ομάδες καταστημάτων (για τη μπάρα και το mega menu) */
   const GROUPS = [
-    { id: 'endysi', name: 'Ένδυση & υπόδηση', short: 'Ένδυση', icon: 'i-hanger', c: '#ff6b4a' },
+    { id: 'moda', name: 'Ένδυση, κόσμημα & αξεσουάρ', short: 'Μόδα', icon: 'i-hanger', c: '#ff6b4a' },
     { id: 'ygeia', name: 'Φαρμακεία & ομορφιά', short: 'Υγεία & ομορφιά', icon: 'i-cross', c: '#2ec4a6' },
-    { id: 'trofima', name: 'Σούπερ μάρκετ & τρόφιμα', short: 'Τρόφιμα', icon: 'i-basket', c: '#ffd23f' },
-    { id: 'eidika', name: 'Εξειδικευμένα & εκθέσεις', short: 'Εξειδικευμένα', icon: 'i-gem', c: '#a78bfa' }
+    { id: 'trofima', name: 'Τρόφιμα & pet', short: 'Τρόφιμα & pet', icon: 'i-basket', c: '#ffd23f' },
+    { id: 'eidika', name: 'Εξειδικευμένα καταστήματα', short: 'Εξειδικευμένα', icon: 'i-gem', c: '#a78bfa' },
+    { id: 'meleti', name: 'Μελέτη & εκθέσεις', short: 'Μελέτη & stand', icon: 'i-cube', c: '#5bd0f5' }
   ];
   const GROUP = Object.fromEntries(GROUPS.map((g) => [g.id, g]));
 
-  /* Τύποι καταστημάτων — όπως εμφανίζονται στη σελίδα «Ανακαινίσεις» του newsystem.gr */
-  const SHOPS = [
-    { id: 'polykatastima', group: 'endysi', name: 'Πολυκατάστημα ενδυμάτων – υποδημάτων', short: 'Πολυκατάστημα', title: 'Πολυκατάστημα<br>ένδυσης', c: '#ffd23f',
+  /* Είδη καταστημάτων — ένα για κάθε φωτογραφία (τα 8 της ένδυσης γίνονται γκαλερί στην κατηγορία) */
+  const SUBS = [
+    { id: 'polykatastima', name: 'Πολυκατάστημα ενδυμάτων – υποδημάτων', short: 'Πολυκατάστημα', title: 'Πολυκατάστημα<br>ένδυσης', c: '#ffd23f',
       text: 'Μεγάλοι χώροι με πολλά τμήματα: ραφιέρες τοίχου, καλόγεροι, κούκλες και πάγκος ταμείου που κρατούν καθαρή τη διαδρομή του πελάτη από τμήμα σε τμήμα.',
       needs: ['Κούκλες', 'Καλόγεροι', 'Ραφιέρες τοίχου', 'Πάγκος ταμείου', 'Αντικλεπτικά'],
       alt: 'Εσωτερικό πολυκαταστήματος ενδυμάτων με ξύλινες ραφιέρες, πάγκο ταμείου, καθιστή κούκλα βιτρίνας και πατάρι' },
-    { id: 'gynaikeia', group: 'endysi', name: 'Γυναικεία ενδύματα', short: 'Γυναικεία', title: 'Γυναικεία<br>ενδύματα', c: '#ff8fc7',
+    { id: 'gynaikeia', name: 'Γυναικεία ενδύματα', short: 'Γυναικεία', title: 'Γυναικεία<br>ενδύματα', c: '#ff8fc7',
       text: 'Βιτρίνα που σταματά τον περαστικό και εσωτερικό που αναδεικνύει κάθε κομμάτι: κούκλες, κρεμάστρες, καλόγεροι και καθρέπτες.',
       needs: ['Γυναικείες κούκλες', 'Κρεμάστρες', 'Καλόγεροι', 'Καθρέπτες', 'Αντικλεπτικά'],
       alt: 'Πρόσοψη καταστήματος γυναικείων ενδυμάτων με μεγάλη γυάλινη βιτρίνα, κούκλες και κόκκινη φωτεινή επιγραφή' },
-    { id: 'andrika', group: 'endysi', name: 'Ανδρικά ενδύματα', short: 'Ανδρικά', title: 'Ανδρικά<br>ενδύματα', c: '#4f7cff', dark: true,
+    { id: 'andrika', name: 'Ανδρικά ενδύματα', short: 'Ανδρικά', title: 'Ανδρικά<br>ενδύματα', c: '#4f7cff', dark: true,
       text: 'Ζεστά υλικά, κρυφός φωτισμός και κομψές μπάρες κρέμασης για κοστούμια, πουκάμισα και αξεσουάρ.',
       needs: ['Ανδρικά μπούστα', 'Ξύλινες κρεμάστρες', 'Modular ράφια', 'Καθρέπτες'],
       alt: 'Εσωτερικό καταστήματος ανδρικών ενδυμάτων με σκούρα ξύλινη κολόνα, φωτισμένες κόγχες με ράφια και ανδρικά μπούστα' },
-    { id: 'paidika', group: 'endysi', name: 'Παιδικά ενδύματα', short: 'Παιδικά', title: 'Παιδικά<br>ενδύματα', c: '#5bd0f5',
+    { id: 'paidika', name: 'Παιδικά ενδύματα', short: 'Παιδικά', title: 'Παιδικά<br>ενδύματα', c: '#5bd0f5',
       text: 'Ανθεκτικός εξοπλισμός στο ύψος των παιδιών, με παιδικές κούκλες και πολύχρωμη προβολή στον τοίχο.',
       needs: ['Παιδικές κούκλες', 'Παιδικές κρεμάστρες', 'Μπάρες τοίχου', 'Καλόγεροι'],
       alt: 'Κατάστημα παιδικών ενδυμάτων με σειρά από παιδικές κούκλες και ρούχα κρεμασμένα σε μπάρες τοίχου' },
-    { id: 'athlitika', group: 'endysi', name: 'Αθλητικά ενδύματα', short: 'Αθλητικά', title: 'Αθλητικά<br>ενδύματα', c: '#2ec4a6',
+    { id: 'athlitika', name: 'Αθλητικά ενδύματα', short: 'Αθλητικά', title: 'Αθλητικά<br>ενδύματα', c: '#2ec4a6',
       text: 'Πολλά κομμάτια σε λίγο χώρο: διπλές μπάρες, πάνελ slatwall και κούκλες σε κίνηση για ρούχα και εξοπλισμό.',
       needs: ['Αθλητικές κούκλες', 'Slatwall', 'Gridwall', 'Πλαστικές κρεμάστρες'],
       alt: 'Κατάστημα αθλητικών ενδυμάτων με διπλές μπάρες κρέμασης γεμάτες ρούχα και ράφια με καπέλα' },
-    { id: 'esoroucha', group: 'endysi', name: 'Εσώρουχα', short: 'Εσώρουχα', title: 'Εσώρουχα', c: '#ff6b4a',
+    { id: 'esoroucha', name: 'Εσώρουχα', short: 'Εσώρουχα', title: 'Εσώρουχα', c: '#ff6b4a',
       text: 'Ευέλικτος τοίχος slatwall, νησίδες και μπούστα που δείχνουν σωστά τα εσώρουχα και τα μαγιό.',
       needs: ['Μπούστα εσωρούχων', 'Κρεμάστρες με κλιπ', 'Slatwall', 'Γάντζοι'],
       alt: 'Κατάστημα εσωρούχων με λευκό τοίχο slatwall, νησίδα με μαγιό και κούκλα με λευκό φόρεμα' },
-    { id: 'gounarika', group: 'endysi', name: 'Γουναρικά & δερμάτινα', short: 'Γουναρικά', title: 'Γουναρικά<br>&amp; δερμάτινα', c: '#ffa23a',
+    { id: 'gounarika', name: 'Γουναρικά & δερμάτινα', short: 'Γουναρικά', title: 'Γουναρικά<br>&amp; δερμάτινα', c: '#ffa23a',
       text: 'Τα βαριά ρούχα θέλουν γερές μπάρες, ενισχυμένες κρεμάστρες και άπλετο φως για να φανεί η υφή.',
       needs: ['Ενισχυμένες κρεμάστρες', 'Κούκλες', 'Καλόγεροι', 'Καθρέπτες'],
       alt: 'Κατάστημα γουναρικών και δερμάτινων με φωτισμένη οροφή, κυκλικό πάγκο και κρεμασμένα παλτά' },
-    { id: 'ypodimata', group: 'endysi', name: 'Υποδήματα', short: 'Υποδήματα', title: 'Υποδήματα', c: '#a78bfa',
+    { id: 'ypodimata', name: 'Υποδήματα', short: 'Υποδήματα', title: 'Υποδήματα', c: '#a78bfa',
       text: 'Ράφια από κρύσταλλο, φωτισμένοι τοίχοι και χαμηλοί καθρέπτες για να δοκιμάζει ο πελάτης με άνεση.',
       needs: ['Κρύσταλλα ραφιών', 'Σταντ παπουτσιών', 'Καθρέπτες δαπέδου', 'Βάθρα'],
       alt: 'Φωτισμένος τοίχος καταστήματος υποδημάτων με γυάλινα ράφια γεμάτα πέδιλα και παπούτσια' },
-    { id: 'aksesouar', group: 'endysi', name: 'Αξεσουάρ', short: 'Αξεσουάρ', title: 'Αξεσουάρ', c: '#ffd23f',
+    { id: 'aksesouar', name: 'Αξεσουάρ', short: 'Αξεσουάρ', title: 'Αξεσουάρ', c: '#ffd23f',
       text: 'Μικρά αντικείμενα σε πολλά χρώματα: περιστρεφόμενα σταντ, slatwall με γάντζους και κούκλες για τσάντες και καπέλα.',
       needs: ['Περιστρεφόμενα σταντ', 'Γάντζοι slatwall', 'Κεφάλια βιτρίνας', 'Βάσεις κοσμημάτων'],
       alt: 'Είσοδος καταστήματος τσαντών και αξεσουάρ με φωτεινή επιγραφή, κούκλες και γεμάτα ράφια' },
-    { id: 'farmakeia', group: 'ygeia', name: 'Φαρμακεία', short: 'Φαρμακεία', title: 'Φαρμακεία', c: '#2ec4a6',
+    { id: 'farmakeia', name: 'Φαρμακεία', short: 'Φαρμακεία', title: 'Φαρμακεία', c: '#2ec4a6',
       text: 'Ραφιέρες φαρμακείου με φωτισμό, γόνδολες, διαχωριστικά και θήκες τιμών, οργανωμένα για γρήγορη εξυπηρέτηση.',
       needs: ['Ραφιέρες με LED', 'Γόνδολες', 'Θήκες τιμών', 'Διαχωριστικά', 'Πάγκος'],
       alt: 'Γωνία φαρμακείου με σκούρες ραφιέρες τοίχου γεμάτες προϊόντα και φωτισμένες ταμπέλες' },
-    { id: 'kallyntika', group: 'ygeia', name: 'Καλλυντικά', short: 'Καλλυντικά', title: 'Καλλυντικά', c: '#ff8fc7',
+    { id: 'kallyntika', name: 'Καλλυντικά', short: 'Καλλυντικά', title: 'Καλλυντικά', c: '#ff8fc7',
       text: 'Σκούρα φόντα, φωτισμένα ράφια και νησίδες που κάνουν τις συσκευασίες να ξεχωρίζουν.',
       needs: ['Νησίδες', 'Κρύσταλλα ραφιών', 'Καθρέπτες πάγκου', 'Διαχωριστικά'],
       alt: 'Κατάστημα καλλυντικών με μαύρη νησίδα προβολής, φωτισμένα ράφια και μαύρα μπαλόνια' },
-    { id: 'supermarket', group: 'trofima', name: 'Super market & ψιλικά', short: 'Super market', title: 'Super market<br>&amp; ψιλικά', c: '#ffd23f',
+    { id: 'supermarket', name: 'Super market & ψιλικά', short: 'Super market', title: 'Super market<br>&amp; ψιλικά', c: '#ffd23f',
       text: 'Γόνδολες, ραφιέρες τοίχου, ράγες τιμών και καλάθια: ό,τι χρειάζεται από το mini market ως το σούπερ μάρκετ.',
       needs: ['Γόνδολες', 'Ραφιέρες τοίχου', 'Θήκες τιμών', 'Καλάθια', 'Αντικλεπτικές πύλες'],
       alt: 'Mini market με μεταλλικές ραφιέρες τοίχου και γόνδολα, κόκκινους τοίχους και ασπρόμαυρο δάπεδο' },
-    { id: 'viologika', group: 'trofima', name: 'Βιολογικά προϊόντα', short: 'Βιολογικά', title: 'Βιολογικά<br>προϊόντα', c: '#b8e04a',
+    { id: 'viologika', name: 'Βιολογικά προϊόντα', short: 'Βιολογικά', title: 'Βιολογικά<br>προϊόντα', c: '#b8e04a',
       text: 'Φυσικό ξύλο, ραφιέρες τύπου κασέτας και καθαρή σήμανση τιμών για προϊόντα που θέλουν να δείχνουν φυσικά.',
       needs: ['Ξύλινες ραφιέρες', 'Γόνδολες', 'Θήκες τιμών', 'Καλάθια'],
       alt: 'Κατάστημα βιολογικών προϊόντων με κλιμακωτές ξύλινες κασέτες προβολής πίσω από τη βιτρίνα' },
-    { id: 'chrysochoia', group: 'eidika', name: 'Χρυσοχοΐα', short: 'Χρυσοχοΐα', title: 'Χρυσοχοΐα', c: '#12131a', dark: true,
+    { id: 'chrysochoia', name: 'Χρυσοχοΐα', short: 'Χρυσοχοΐα', title: 'Χρυσοχοΐα', c: '#12131a', dark: true,
       text: 'Φωτισμένες βιτρίνες, κρύσταλλα και βάσεις κοσμημάτων, με την ασφάλεια και τη λάμψη που θέλει ένα χρυσοχοείο.',
       needs: ['Βιτρίνες με LED', 'Βάσεις κοσμημάτων', 'Κρύσταλλα', 'Πάγκος'],
       alt: 'Χρυσοχοείο υπό κατασκευή με μαύρες κάθετες βιτρίνες τοίχου και μπλε φωτισμό LED' },
-    { id: 'kiniti', group: 'eidika', name: 'Κινητή τηλεφωνία', short: 'Κινητή', title: 'Κινητή<br>τηλεφωνία', c: '#5bd0f5',
+    { id: 'kiniti', name: 'Κινητή τηλεφωνία', short: 'Κινητή', title: 'Κινητή<br>τηλεφωνία', c: '#5bd0f5',
       text: 'Τοίχοι slatwall με γάντζους, βάσεις συσκευών από plexiglass και πάγκος εξυπηρέτησης για καταστήματα κινητής.',
       needs: ['Slatwall', 'Βάσεις plexiglass', 'Σταντ αξεσουάρ', 'Πάγκος'],
       alt: 'Κατάστημα κινητής τηλεφωνίας με ξύλινες νησίδες slatwall και ψηλό διαφημιστικό σταντ' },
-    { id: 'mousika', group: 'eidika', name: 'Μουσικά όργανα', short: 'Μουσικά όργανα', title: 'Μουσικά<br>όργανα', c: '#ffa23a',
+    { id: 'mousika', name: 'Μουσικά όργανα', short: 'Μουσικά όργανα', title: 'Μουσικά<br>όργανα', c: '#ffa23a',
       text: 'Πάγκοι-βιτρίνες, slatwall και βάσεις για κιθάρες, ώστε τα όργανα να κρέμονται με ασφάλεια και να φαίνονται.',
       needs: ['Πάγκος βιτρίνα', 'Slatwall', 'Βάσεις κιθάρας', 'Γάντζοι'],
       alt: 'Κατάστημα μουσικών οργάνων με ξύλινους πάγκους-βιτρίνες και κιθάρες κρεμασμένες σε τοίχο slatwall' },
-    { id: 'vivliopoleia', group: 'eidika', name: 'Βιβλιοπωλεία', short: 'Βιβλιοπωλεία', title: 'Βιβλιο&shy;πωλεία', c: '#ff6b4a',
+    { id: 'vivliopoleia', name: 'Βιβλιοπωλεία', short: 'Βιβλιοπωλεία', title: 'Βιβλιο&shy;πωλεία', c: '#ff6b4a',
       text: 'Σταντ βιβλίων, ραφιέρες και πάγκοι για βιβλία, χαρτικά και παιχνίδια.',
       needs: ['Σταντ βιβλίων', 'Ραφιέρες', 'Σταντ εντύπων', 'Περιστρεφόμενα σταντ'],
       alt: 'Βιτρίνα βιβλιοπωλείου με ξύλινο σταντ σε σχήμα πυραμίδας με βιβλία και παιχνίδια' },
-    { id: 'petshop', group: 'eidika', name: 'Pet shop', short: 'Pet shop', title: 'Pet shop', c: '#b8e04a',
+    { id: 'petshop', name: 'Pet shop', short: 'Pet shop', title: 'Pet shop', c: '#b8e04a',
       text: 'Ραφιέρες βαρέως τύπου για ζωοτροφές, slatwall για αξεσουάρ και ειδικές κατασκευές όπως ενυδρεία.',
       needs: ['Ραφιέρες βαρέως τύπου', 'Γόνδολες', 'Slatwall', 'Καλάθια'],
       alt: 'Pet shop με συνθετικό γκαζόν, ραφιέρες με αξεσουάρ για κατοικίδια και γυάλινη δεξαμενή με νερό' },
-    { id: 'stand', group: 'eidika', name: 'Stand εκθέσεων', short: 'Stand εκθέσεων', title: 'Stand<br>εκθέσεων', c: '#4f7cff', dark: true,
+    { id: 'stand', name: 'Stand εκθέσεων', short: 'Stand εκθέσεων', title: 'Stand<br>εκθέσεων', c: '#4f7cff', dark: true,
       text: 'Περίπτερα για εκθέσεις: βάθρα, gridwall, σταντ εντύπων και κατασκευές που στήνονται και ξεστήνονται γρήγορα.',
       needs: ['Βάθρα', 'Gridwall', 'Σταντ εντύπων', 'Ειδική κατασκευή'],
       alt: 'Λευκό εκθεσιακό περίπτερο με κλιμακωτά βάθρα, κολόνες και προβολείς' }
   ];
+  SUBS.forEach((s) => { s.img = `img/${s.id}.webp`; });
+  const SUB = Object.fromEntries(SUBS.map((s) => [s.id, s]));
+  const CLOTH_SUBS = ['polykatastima', 'gynaikeia', 'andrika', 'paidika', 'athlitika', 'esoroucha', 'gounarika', 'ypodimata'];
+  const pick = (id, o) => ({ ...SUB[id], ...o });
+  const unique = (a) => [...new Set(a)];
+
+  /* Οι 13 κατηγορίες, με τη σειρά των φακέλων (01–13) */
+  const SHOPS = [
+    { id: 'endysi', group: 'moda', name: 'Ένδυση & υπόδηση', short: 'Ένδυση', title: 'Ένδυση<br>&amp; υπόδηση', c: '#ff6b4a',
+      text: 'Πολυκαταστήματα, γυναικεία, ανδρικά, παιδικά, αθλητικά, εσώρουχα, γουναρικά–δερμάτινα και υποδήματα: κούκλες, κρεμάστρες, καλόγεροι, καθρέπτες και ραφιέρες για κάθε μαγαζί ρούχων και παπουτσιών.',
+      needs: ['Κούκλες', 'Κρεμάστρες', 'Καλόγεροι', 'Καθρέπτες', 'Σταντ παπουτσιών', 'Αντικλεπτικά'],
+      img: 'img/polykatastima.webp', alt: SUB.polykatastima.alt, photos: CLOTH_SUBS },
+    pick('petshop', { group: 'trofima' }),
+    { id: 'schedia', group: 'meleti', name: 'Σχέδια', short: 'Σχέδια', title: 'Σχέδια', c: '#a78bfa',
+      text: 'Κάθε έργο ξεκινά από το χαρτί: κάτοψη, 3D μελέτη και φωτορεαλιστικές όψεις, για να δεις το μαγαζί σου με τα υλικά, τα χρώματα και τον φωτισμό του πριν στηθεί.',
+      needs: ['Κάτοψη', '3D μελέτη', 'Φωτορεαλιστικές όψεις', 'Μελέτη φωτισμού'],
+      alt: 'Τρισδιάστατο σχέδιο καταστήματος ενδυμάτων με ράφια τοίχου, μπλε πάγκους και κυκλικά φωτιστικά οροφής' },
+    pick('farmakeia', { group: 'ygeia' }),
+    pick('kallyntika', { group: 'ygeia' }),
+    pick('chrysochoia', { group: 'moda', name: 'Χρυσοχοεία', short: 'Χρυσοχοεία', title: 'Χρυσοχοεία' }),
+    pick('aksesouar', { group: 'moda' }),
+    pick('kiniti', { group: 'eidika' }),
+    pick('supermarket', { group: 'trofima' }),
+    pick('mousika', { group: 'eidika' }),
+    pick('vivliopoleia', { group: 'eidika' }),
+    pick('stand', { group: 'meleti' }),
+    pick('viologika', { group: 'trofima' })
+  ];
   SHOPS.forEach((s) => {
-    s.img = `img/${s.id}.webp`;
+    s.img = s.img || `img/${s.id}.webp`;
     // μήκος της μεγαλύτερης λέξης του τίτλου: ο τίτλος μεγαλώνει όσο χωράει χωρίς να σπάει λέξη
     s.len = Math.max(...s.title.replace(/&shy;/g, '').replace(/<br>|&amp;/g, ' ').split(/\s+/).map((w) => w.length));
   });
@@ -131,7 +160,7 @@
   ];
   const TYPE = Object.fromEntries(TYPES.map((t) => [t.id, t]));
 
-  /* Ενδεικτικά προϊόντα — κάθε προϊόν ανήκει σε έναν τύπο και σε ένα ή περισσότερα καταστήματα */
+  /* Ενδεικτικά προϊόντα — κάθε προϊόν ανήκει σε έναν τύπο και σε ένα ή περισσότερα είδη καταστημάτων */
   const CLOTHES = ['polykatastima', 'gynaikeia', 'andrika', 'paidika', 'athlitika', 'esoroucha', 'gounarika'];
   const PRODUCTS = [
     { id: 'p1', cat: 'koukles', name: 'Κούκλα γυναικεία πολυεστερική, λευκή γυαλιστερή', pack: 'με βάση γυαλιού', retail: 189, b2b: 149, tags: ['top'], shops: ['polykatastima', 'gynaikeia', 'esoroucha', 'gounarika'] },
@@ -175,11 +204,18 @@
     { id: 'p38', cat: 'aksesouar', name: 'Καλάθι αγορών πλαστικό με χερούλια', pack: 'συσκευασία 20 τεμ.', retail: 96, was: 110, b2b: 72, tags: ['offer'], shops: ['supermarket', 'viologika', 'farmakeia', 'petshop', 'kallyntika'] },
     { id: 'p39', cat: 'aksesouar', name: 'Αντικλεπτικές πύλες RF', pack: 'ζεύγος, με εγκατάσταση', retail: 1290, b2b: 1040, tags: [], stock: 'order', shops: ['supermarket', 'farmakeia', 'polykatastima', 'kiniti'] },
     { id: 'p40', cat: 'aksesouar', name: 'Ράγα τιμών για ράφι 100 cm', pack: 'συσκευασία 10 τεμ.', retail: 39, b2b: 27, tags: [], shops: ['supermarket', 'viologika', 'petshop'] },
-    { id: 'p41', cat: 'kataskeves', name: 'Πάγκος ταμείου κατά παραγγελία', pack: 'μελαμίνη ή λάκα, μελέτη στο χώρο', retail: 890, b2b: 720, from: true, tags: [], stock: 'order', shops: ['farmakeia', 'polykatastima', 'chrysochoia', 'vivliopoleia', 'kiniti', 'mousika'] },
+    { id: 'p41', cat: 'kataskeves', name: 'Πάγκος ταμείου κατά παραγγελία', pack: 'μελαμίνη ή λάκα, μελέτη στο χώρο', retail: 890, b2b: 720, from: true, tags: [], stock: 'order', shops: ['farmakeia', 'polykatastima', 'chrysochoia', 'vivliopoleia', 'kiniti', 'mousika', 'schedia'] },
     { id: 'p42', cat: 'kataskeves', name: 'Βιτρίνα κοσμημάτων με LED', pack: 'κρύσταλλο ασφαλείας, κλειδαριά', retail: 1150, b2b: 930, from: true, tags: ['new'], stock: 'order', shops: ['chrysochoia'] },
-    { id: 'p44', cat: 'kataskeves', name: 'Stand έκθεσης κατά παραγγελία', pack: 'τιμή ανά m², με τοποθέτηση', retail: 140, b2b: 115, from: true, tags: [], stock: 'order', shops: ['stand'] },
-    { id: 'p45', cat: 'kataskeves', name: 'Πάγκος-βιτρίνα για μουσικά όργανα', pack: 'ξύλο και κρύσταλλο, 180 cm', retail: 760, b2b: 610, from: true, tags: [], stock: 'order', shops: ['mousika'] }
+    { id: 'p44', cat: 'kataskeves', name: 'Stand έκθεσης κατά παραγγελία', pack: 'τιμή ανά m², με τοποθέτηση', retail: 140, b2b: 115, from: true, tags: [], stock: 'order', shops: ['stand', 'schedia'] },
+    { id: 'p45', cat: 'kataskeves', name: 'Πάγκος-βιτρίνα για μουσικά όργανα', pack: 'ξύλο και κρύσταλλο, 180 cm', retail: 760, b2b: 610, from: true, tags: [], stock: 'order', shops: ['mousika'] },
+    { id: 'p47', cat: 'kataskeves', name: 'Φωτορεαλιστικές 3D όψεις καταστήματος', pack: 'πακέτο 4 όψεων, μαζί με κάτοψη', retail: 180, b2b: 140, tags: ['new'], stock: 'order', shops: ['schedia', 'stand'] },
+    { id: 'p48', cat: 'kataskeves', name: 'Μελέτη φωτισμού καταστήματος', pack: 'σχέδιο φωτιστικών και θερμοκρασίες χρώματος', retail: 150, b2b: 120, tags: [], stock: 'order', shops: ['schedia', 'chrysochoia', 'farmakeia'] }
   ];
+  // τα αρχικά είδη μένουν στο p.subs (γκαλερί ένδυσης), οι κατηγορίες στο p.shops
+  PRODUCTS.forEach((p) => {
+    p.subs = p.shops;
+    p.shops = unique(p.shops.map((id) => (CLOTH_SUBS.includes(id) ? 'endysi' : id)));
+  });
   const PROD = Object.fromEntries(PRODUCTS.map((p) => [p.id, p]));
   const productsOf = (shopId) => PRODUCTS.filter((p) => p.shops.includes(shopId));
   SHOPS.forEach((s) => { s.count = productsOf(s.id).length; });
@@ -212,7 +248,7 @@
     return `<article class="slide ${s.dark ? 'slide--dark' : ''}" style="--c:${s.c}" data-shop="${s.id}">
       <div class="wrap slide__inner">
         <div class="slide__copy">
-          <p class="slide__kicker">Κατάστημα ${pad(i + 1)} / ${pad(total)} · ${esc(g.name)}</p>
+          <p class="slide__kicker">Κατηγορία ${pad(i + 1)} / ${pad(total)} · ${esc(g.name)}</p>
           <${h} class="slide__title" style="--len:${s.len}">${s.title}</${h}>
           <p class="slide__text">${esc(s.text)}</p>
           <ul class="chips">${s.needs.slice(0, 4).map((n) => `<li>${esc(n)}</li>`).join('')}</ul>
@@ -388,8 +424,8 @@
     const chars = Array.from(text), n = Array.from(q).length;
     return esc(chars.slice(0, i).join('')) + '<mark>' + esc(chars.slice(i, i + n).join('')) + '</mark>' + esc(chars.slice(i + n).join(''));
   };
-  const shopText = (s) => `${s.name} ${s.short} ${s.needs.join(' ')} ${GROUP[s.group].name}`;
-  const prodText = (p) => `${p.name} ${p.pack} ${TYPE[p.cat].name} ${TYPE[p.cat].subs.join(' ')} ${p.shops.map((id) => SHOP[id].name).join(' ')}`;
+  const shopText = (s) => `${s.name} ${s.short} ${s.needs.join(' ')} ${GROUP[s.group].name} ${(s.photos || []).map((id) => SUB[id].name).join(' ')}`;
+  const prodText = (p) => `${p.name} ${p.pack} ${TYPE[p.cat].name} ${TYPE[p.cat].subs.join(' ')} ${unique([...p.shops, ...p.subs]).map((id) => (SHOP[id] || SUB[id]).name).join(' ')}`;
   const matches = (p, q) => !q || norm(prodText(p)).includes(norm(q));
 
   const priceOf = (p) => (isB2B() ? p.b2b : p.retail);
@@ -434,7 +470,7 @@
   stickersEl.innerHTML = SHOPS.map(stickerHTML).join('');
 
   const groupChips = $('#groupChips');
-  groupChips.innerHTML = [{ id: '', name: 'Όλα τα καταστήματα', c: '#fff' }, ...GROUPS]
+  groupChips.innerHTML = [{ id: '', name: 'Όλες οι κατηγορίες', c: '#fff' }, ...GROUPS]
     .map((g) => `<button type="button" class="gchip" data-group="${g.id}" aria-pressed="${g.id === ''}" style="--c:${g.c}">${g.icon ? `<i>${icon(g.icon)}</i>` : ''}${esc(g.name)} <small>${g.id ? SHOPS.filter((s) => s.group === g.id).length : SHOPS.length}</small></button>`).join('');
   const filterStickers = (gid) => {
     $$('.gchip', groupChips).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.group === gid)));
@@ -466,7 +502,7 @@
   const mega = $('#mega');
   const megaInner = $('.mega__inner', mega);
   const BAR = [...GROUPS, { id: 'proionta', name: 'Τύποι προϊόντων', short: 'Προϊόντα', icon: 'i-grid', c: '#fff' }];
-  catbar.innerHTML = `<li><a class="catbar__btn catbar__all" href="#katigories"><i style="--c:var(--ink)" class="is-dark">${icon('i-store')}</i>Όλα τα μαγαζιά</a></li>`
+  catbar.innerHTML = `<li><a class="catbar__btn catbar__all" href="#katigories"><i style="--c:var(--ink)" class="is-dark">${icon('i-store')}</i>Όλες</a></li>`
     + BAR.map((g) => `<li><button class="catbar__btn" type="button" data-cat="${g.id}" aria-expanded="false" aria-controls="mega"><i style="--c:${g.c}">${icon(g.icon)}</i>${esc(g.short)}</button></li>`).join('');
   const catBtns = $$('button.catbar__btn', catbar);
   let openCat = '';
@@ -489,10 +525,10 @@
     megaInner.innerHTML = `
       <div class="mega__hero" style="--c:${g.c}">
         <span class="sticker__icon">${icon(g.icon)}</span>
-        <div><b>${esc(g.name)}</b><small>${shops.length} τύποι καταστημάτων · ${new Set(shops.flatMap((s) => productsOf(s.id).map((p) => p.id))).size} προϊόντα</small></div>
+        <div><b>${esc(g.name)}</b><small>${shops.length} κατηγορίες · ${new Set(shops.flatMap((s) => productsOf(s.id).map((p) => p.id))).size} προϊόντα</small></div>
       </div>
       <ul class="mega__shops">${shops.map((s) => `<li><a href="#katastima/${s.id}" style="--c:${s.c}"><span class="mega__ph">${img(s)}</span><span><b>${esc(s.name)}</b><small>${s.count} προϊόντα</small></span></a></li>`).join('')}</ul>
-      <div class="mega__promo"><b>Ανοίγεις <span>${esc(g.short.toLowerCase())}</span>;</b><p>Δωρεάν μελέτη καταστήματος και τιμές B2B σε όλα τα προϊόντα.</p><a class="btn btn--yellow" href="#kataskeves">Ζήτησε μελέτη ${icon('i-arrow')}</a></div>`;
+      <div class="mega__promo"><b>Ανοίγεις <span>κατάστημα</span>;</b><p>Δωρεάν μελέτη καταστήματος και τιμές B2B σε όλα τα προϊόντα.</p><a class="btn btn--yellow" href="#kataskeves">Ζήτησε μελέτη ${icon('i-arrow')}</a></div>`;
   };
   const setMega = (id) => {
     openCat = id;
@@ -643,18 +679,31 @@
      ΣΕΛΙΔΑ ΚΑΤΗΓΟΡΙΑΣ-ΚΑΤΑΣΤΗΜΑΤΟΣ  (#katastima/<id>)
      ========================================================= */
   const view = $('#shopview');
-  const sv = { shop: null, type: '', sort: 'rec' };
+  const sv = { shop: null, sub: '', type: '', sort: 'rec' };
   const svGrid = $('#svGrid');
   const svFilters = $('#svFilters');
   const svSort = $('#svSort');
+  const svGallery = $('#svGallery');
+  const svImg = $('#svImg');
   const baseTitle = document.title;
+  const capOf = (name) => `New System | ${name.toLocaleUpperCase('el-GR').normalize('NFD').replace(/[\u0301]/g, '').normalize('NFC')}`;
+
+  // προϊόντα της κατηγορίας, και του είδους αν έχει επιλεγεί φωτογραφία της γκαλερί
+  const svBase = () => productsOf(sv.shop.id).filter((p) => !sv.sub || p.subs.includes(sv.sub));
+
+  const renderSvFilters = () => {
+    const prods = svBase();
+    const types = TYPES.filter((t) => prods.some((p) => p.cat === t.id));
+    svFilters.innerHTML = `<button type="button" class="svfilter" data-type="" aria-pressed="true">Όλα <small>${prods.length}</small></button>`
+      + types.map((t) => `<button type="button" class="svfilter" data-type="${t.id}" aria-pressed="false" style="--c:${t.c}"><i class="${t.dark ? 'is-dark' : ''}">${icon(t.icon)}</i>${esc(t.short)} <small>${prods.filter((p) => p.cat === t.id).length}</small></button>`).join('');
+  };
 
   const renderSvProducts = () => {
     const s = sv.shop;
-    let items = productsOf(s.id).filter((p) => !sv.type || p.cat === sv.type);
+    let items = svBase().filter((p) => !sv.type || p.cat === sv.type);
     if (sv.sort !== 'rec') items = items.slice().sort((a, b) => (sv.sort === 'asc' ? 1 : -1) * (priceOf(a) - priceOf(b)));
     svGrid.innerHTML = items.map((p) => cardHTML(p, s.id)).join('');
-    $('#svCount').textContent = `${items.length} ${items.length === 1 ? 'προϊόν' : 'προϊόντα'}${sv.type ? ` στον τύπο ${TYPE[sv.type].name}` : ''}`;
+    $('#svCount').textContent = `${items.length} ${items.length === 1 ? 'προϊόν' : 'προϊόντα'}${sv.sub ? ` για ${SUB[sv.sub].name.toLowerCase()}` : ''}${sv.type ? ` στον τύπο ${TYPE[sv.type].name}` : ''}`;
     $$('.svfilter', svFilters).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.type === sv.type)));
   };
 
@@ -669,35 +718,51 @@
   const renderShopView = (s) => {
     const i = SHOPS.indexOf(s);
     const g = GROUP[s.group];
-    sv.shop = s; sv.type = ''; sv.sort = 'rec'; svSort.value = 'rec';
+    sv.shop = s; sv.sub = ''; sv.type = ''; sv.sort = 'rec'; svSort.value = 'rec';
     view.style.setProperty('--c', s.c);
     $('#svHero').classList.toggle('is-dark', !!s.dark);
     $('#svCrumb').textContent = s.name;
-    const im = $('#svImg');
-    im.src = s.img; im.alt = s.alt;
-    $('#svCap').textContent = `New System | ${s.name.toLocaleUpperCase('el-GR').normalize('NFD').replace(/[́]/g, '').normalize('NFC')}`;
-    $('#svKicker').textContent = `Κατάστημα ${pad(i + 1)} / ${pad(total)} · ${g.name}`;
+    svImg.src = s.img; svImg.alt = s.alt;
+    $('#svCap').textContent = capOf(s.name);
+    // γκαλερί ειδών (μόνο στην ένδυση): μία φωτογραφία για κάθε είδος καταστήματος
+    svGallery.hidden = !s.photos;
+    svGallery.innerHTML = s.photos ? `<p class="svgallery__note">Έργα ανά είδος καταστήματος. Πάτα μια φωτογραφία για να δεις τα προϊόντα του.</p>
+      <div class="svgallery__list" role="group" aria-label="Είδη καταστημάτων">
+        <button type="button" class="svthumb svthumb--all" data-sub="" aria-pressed="true"><span class="svthumb__ic">${icon('i-grid')}</span><span class="svthumb__name">Όλα τα είδη</span></button>
+        ${s.photos.map((id) => `<button type="button" class="svthumb" data-sub="${id}" aria-pressed="false" style="--c:${SUB[id].c}"><img src="${SUB[id].img}" alt="" width="1448" height="1086" loading="lazy" decoding="async"><span class="svthumb__name">${esc(SUB[id].short).replace('Πολυκατάστημα', 'Πολυκατά&shy;στημα')}</span></button>`).join('')}
+      </div>` : '';
+    $('#svKicker').textContent = `Κατηγορία ${pad(i + 1)} / ${pad(total)} · ${g.name}`;
     $('#svTitle').innerHTML = s.title;
     $('#svTitle').style.setProperty('--len', s.len);
     $('#svText').textContent = s.text;
     $('#svNeeds').innerHTML = s.needs.map((n) => `<li>${esc(n)}</li>`).join('');
     $('#svFor').textContent = s.name.toLowerCase();
     $('#svJump').innerHTML = `Δες τα ${s.count} προϊόντα ${icon('i-arrow')}`;
-    const prods = productsOf(s.id);
-    const types = TYPES.filter((t) => prods.some((p) => p.cat === t.id));
-    svFilters.innerHTML = `<button type="button" class="svfilter" data-type="" aria-pressed="true">Όλα <small>${prods.length}</small></button>`
-      + types.map((t) => `<button type="button" class="svfilter" data-type="${t.id}" aria-pressed="false" style="--c:${t.c}"><i class="${t.dark ? 'is-dark' : ''}">${icon(t.icon)}</i>${esc(t.short)} <small>${prods.filter((p) => p.cat === t.id).length}</small></button>`).join('');
+    renderSvFilters();
     renderSvProducts();
     paintLink($('#svPrev'), SHOPS[(i - 1 + total) % total]);
     paintLink($('#svNext'), SHOPS[(i + 1) % total]);
     const rel = SHOPS.filter((o) => o.group === s.group && o.id !== s.id);
-    $('#svRelTitle').textContent = `Άλλα καταστήματα: ${g.name}`;
+    $('#svRelTitle').textContent = `Άλλες κατηγορίες: ${g.name}`;
     const relEl = $('#svRelated');
     relEl.innerHTML = rel.map(stickerHTML).join('');
     $$('li', relEl).forEach((li) => li.classList.add('is-in'));
     document.title = `${s.name} · New System`;
   };
 
+  /* κλικ σε φωτογραφία της γκαλερί: αλλάζει η κύρια φωτογραφία και φιλτράρονται τα προϊόντα του είδους */
+  const setSub = (id) => {
+    const s = sv.shop;
+    const o = id ? SUB[id] : s;
+    sv.sub = id; sv.type = '';
+    svImg.src = o.img; svImg.alt = o.alt;
+    $('#svCap').textContent = capOf(o.name);
+    $('#svFor').textContent = o.name.toLowerCase();
+    $$('.svthumb', svGallery).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.sub === id)));
+    renderSvFilters();
+    renderSvProducts();
+  };
+  svGallery.addEventListener('click', (e) => { const b = e.target.closest('.svthumb'); if (b) setSub(b.dataset.sub); });
   svFilters.addEventListener('click', (e) => { const b = e.target.closest('.svfilter'); if (b) { sv.type = b.dataset.type; renderSvProducts(); } });
   svSort.addEventListener('change', () => { sv.sort = svSort.value; renderSvProducts(); });
   $('#svJump').addEventListener('click', (e) => { e.preventDefault(); scrollToEl($('#svProducts')); });
@@ -706,13 +771,15 @@
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   let homeY = 0;
   const route = () => {
-    const m = location.hash.match(/^#katastima\/([\w-]+)/);
+    const m = location.hash.match(/^#katastima\/([\w-]+)(?:\/([\w-]+))?/);
     const s = m && SHOP[m[1]];
     setMega('');
     closeSuggest();
     if (s) {
       if (view.hidden) homeY = window.scrollY;
       renderShopView(s);
+      // #katastima/endysi/ypodimata → ανοίγει κατευθείαν το είδος της γκαλερί
+      if (m[2] && s.photos && s.photos.includes(m[2])) setSub(m[2]);
       view.hidden = false;
       document.body.classList.add('is-shopview');
       setAway(true);
@@ -759,7 +826,7 @@
     const prods = PRODUCTS.filter((p) => (!qcat.value || p.cat === qcat.value) && matches(p, term)).slice(0, 5);
     sugItems = [...shops.map((s) => ({ type: 'shop', s })), ...types.map((c) => ({ type: 'cat', c })), ...prods.map((p) => ({ type: 'prod', p }))];
     let html = '', n = 0;
-    if (shops.length) html += '<li class="suggest__label" role="presentation">Καταστήματα</li>' + shops.map((s) => { const i = n++; return `<li class="suggest__item" role="option" id="sg${i}" data-i="${i}" aria-selected="false"><span class="suggest__ic suggest__ic--ph" style="--c:${s.c}"><img src="${s.img}" alt="" width="36" height="36"></span><span class="suggest__txt"><b>${highlight(s.name, term)}</b><small>${s.count} προϊόντα · ${esc(s.needs.slice(0, 2).join(' · '))}</small></span></li>`; }).join('');
+    if (shops.length) html += '<li class="suggest__label" role="presentation">Κατηγορίες</li>' + shops.map((s) => { const i = n++; return `<li class="suggest__item" role="option" id="sg${i}" data-i="${i}" aria-selected="false"><span class="suggest__ic suggest__ic--ph" style="--c:${s.c}"><img src="${s.img}" alt="" width="36" height="36"></span><span class="suggest__txt"><b>${highlight(s.name, term)}</b><small>${s.count} προϊόντα · ${esc(s.needs.slice(0, 2).join(' · '))}</small></span></li>`; }).join('');
     if (types.length) html += '<li class="suggest__label" role="presentation">Τύποι προϊόντων</li>' + types.map((c) => { const i = n++; return `<li class="suggest__item" role="option" id="sg${i}" data-i="${i}" aria-selected="false"><span class="suggest__ic ${c.dark ? 'is-dark' : ''}" style="--c:${c.c}">${icon(c.icon)}</span><span class="suggest__txt"><b>${highlight(c.name, term)}</b><small>${c.subs.slice(0, 3).join(' · ')}</small></span></li>`; }).join('');
     if (prods.length) html += '<li class="suggest__label" role="presentation">Προϊόντα</li>' + prods.map((p) => { const i = n++; const c = TYPE[p.cat]; return `<li class="suggest__item" role="option" id="sg${i}" data-i="${i}" aria-selected="false"><span class="suggest__ic ${c.dark ? 'is-dark' : ''}" style="--c:${c.c}">${icon(c.icon)}</span><span class="suggest__txt"><b>${highlight(p.name, term)}</b><small>${esc(c.name)} · ${esc(p.pack)}</small></span><span class="suggest__price">${fmt(priceOf(p))}</span></li>`; }).join('');
     if (!sugItems.length) html = `<li class="suggest__none">Δεν βρέθηκε κάτι για «${esc(term)}». Δοκίμασε «φαρμακείο» ή «κρεμάστρα».</li>`;
@@ -802,8 +869,12 @@
     // όνομα καταστήματος (π.χ. «φαρμακείο») → σελίδα καταστήματος
     const t = norm(term);
     const stem = t.length > 6 ? t.slice(0, -2) : t;
-    const exact = !qcat.value && stem.length >= 5 && SHOPS.find((s) => norm(s.name).startsWith(stem) || norm(s.short).startsWith(stem));
+    const hit = (s) => norm(s.name).startsWith(stem) || norm(s.short).startsWith(stem);
+    const exact = !qcat.value && stem.length >= 5 && SHOPS.find(hit);
     if (exact) { q.value = ''; location.hash = `katastima/${exact.id}`; return; }
+    // είδος ένδυσης (π.χ. «υποδήματα») → ένδυση με επιλεγμένη τη φωτογραφία του είδους
+    const sub = !qcat.value && stem.length >= 5 && CLOTH_SUBS.map((id) => SUB[id]).find(hit);
+    if (sub) { q.value = ''; location.hash = `katastima/endysi/${sub.id}`; return; }
     showShop({ q: term, cat: qcat.value });
   });
 

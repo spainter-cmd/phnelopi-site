@@ -789,6 +789,14 @@ body.is-locked { overflow: hidden; }
   .footer__brand { grid-column: auto; }
   .toast { bottom: 28px; }
 }
+/* 1024–1199: πιο σφιχτά κουμπιά για να χωράνε και τα 7 στη μπάρα */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .catbar__list { gap: 2px; }
+  .catbar__btn { gap: 6px; padding: 5px 8px 5px 5px; }
+  .catbar__btn i { width: 26px; height: 26px; border-radius: 9px; }
+  .catbar__btn svg { width: 18px; height: 18px; }
+  .svthumb__name { font-size: 11px; padding-inline: 5px; }
+}
 @media (min-width: 1200px) {
   .catbar__btn { font-size: 14px; padding-right: 12px; }
 }
@@ -911,7 +919,8 @@ a.catbar__btn { text-decoration: none; color: inherit; }
 .crumbs a { color: var(--ink); }
 .crumbs b { color: var(--ink); }
 
-.svhero { display: grid; gap: 30px; }
+.svhero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px; }
+.svhero__media { min-width: 0; }
 .svhero__fig { position: relative; margin: 0; }
 .svhero__fig img {
   width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
@@ -946,6 +955,30 @@ a.catbar__btn { text-decoration: none; color: inherit; }
 .svhero__text { margin-top: 12px; font-size: 17px; max-width: 52ch; opacity: .92; }
 .svhero__needs-label { margin-top: 18px; font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
 .svhero__copy .chips { margin-top: 8px; }
+
+/* γκαλερί ειδών καταστημάτων (ένδυση & υπόδηση) */
+.svgallery { margin-top: 32px; }
+.svgallery__note { margin: 0 0 10px; font-size: 14px; font-weight: 700; color: var(--muted); }
+.svgallery__list {
+  display: flex; gap: 10px; overflow-x: auto; padding: 4px 4px 10px; margin: 0 -4px;
+  scroll-snap-type: x proximity; scrollbar-width: none;
+}
+.svgallery__list::-webkit-scrollbar { display: none; }
+.svthumb {
+  flex: none; width: 124px; display: flex; flex-direction: column; gap: 0; padding: 0; overflow: hidden;
+  border: 2px solid var(--ink); border-radius: 16px; background: #fff; color: var(--ink);
+  font: inherit; cursor: pointer; scroll-snap-align: start; text-align: left;
+  transition: transform .2s, background .2s, color .2s, box-shadow .2s;
+}
+.svthumb img { display: block; flex: none; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--c, var(--yellow)); border-bottom: 2px solid var(--ink); }
+.svthumb__name { display: block; padding: 6px 7px 7px; font-size: 12px; letter-spacing: -.01em; font-weight: 800; line-height: 1.15; overflow-wrap: anywhere; }
+.svthumb--all { justify-content: space-between; background: var(--yellow); }
+.svthumb__ic { display: grid; place-items: center; flex: 1; min-height: 60px; }
+.svthumb__ic svg { width: 30px; height: 30px; }
+.svthumb:hover { transform: translateY(-2px); }
+.svthumb[aria-pressed="true"] { background: var(--ink); color: #fff; box-shadow: 3px 3px 0 var(--yellow); }
+.svthumb[aria-pressed="true"] img { border-bottom-color: var(--ink); opacity: .9; }
+.svthumb:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 
 .svbar { margin-top: 44px; display: grid; gap: 14px; }
 .svbar__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
@@ -1022,6 +1055,8 @@ a.catbar__btn { text-decoration: none; color: inherit; }
   .mega__shops { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .mega__types { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .svhero__copy { padding: 30px 28px 26px; }
+  .svgallery__list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); overflow: visible; margin: 0; padding: 4px 0 4px; }
+  .svthumb { width: auto; }
   .products--grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 16px; }
   .products--grid .product__name { font-size: 15px; }
   .products--grid .product__add { font-size: 14px; white-space: nowrap; }

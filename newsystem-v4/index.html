@@ -153,7 +153,7 @@
       </header>
       <div class="groupchips" id="groupChips" role="group" aria-label="Φίλτρο καταστημάτων"></div>
       <ul class="stickers stickers--shops" id="stickers"></ul>
-      <p class="demo-note">Φωτογραφίες: έργα της New System από τη σελίδα «Ανακαινίσεις».</p>
+      <p class="demo-note">Φωτογραφίες: έργα της New System, ανά κατηγορία.</p>
     </div>
   </section>
 
@@ -190,11 +190,14 @@
   <section class="shopview" id="shopview" hidden aria-labelledby="svTitle">
     <div class="wrap">
       <nav class="crumbs" aria-label="Διαδρομή">
-        <a href="#">Αρχική</a><span aria-hidden="true">›</span><a href="#katigories">Καταστήματα</a><span aria-hidden="true">›</span><b id="svCrumb"></b>
+        <a href="#">Αρχική</a><span aria-hidden="true">›</span><a href="#katigories">Κατηγορίες</a><span aria-hidden="true">›</span><b id="svCrumb"></b>
       </nav>
 
       <div class="svhero" id="svHero">
-        <figure class="svhero__fig"><img id="svImg" src="" alt="" width="702" height="526"><figcaption id="svCap"></figcaption></figure>
+        <div class="svhero__media">
+          <figure class="svhero__fig"><img id="svImg" src="" alt="" width="1448" height="1086"><figcaption id="svCap"></figcaption></figure>
+          <div class="svgallery" id="svGallery" hidden></div>
+        </div>
         <div class="svhero__copy">
           <p class="slide__kicker" id="svKicker"></p>
           <h1 class="svhero__title" id="svTitle" tabindex="-1"></h1>
@@ -233,7 +236,7 @@
       <ul class="products products--grid" id="svGrid"></ul>
       <p class="demo-note">Ενδεικτικά προϊόντα και τιμές για την παρουσίαση του σχεδίου.</p>
 
-      <nav class="svnav" aria-label="Άλλα καταστήματα">
+      <nav class="svnav" aria-label="Άλλες κατηγορίες">
         <a class="arrow arrow--prev" id="svPrev" href="#">
           <span class="arrow__btn"><svg><use href="#i-arrow"/></svg></span>
           <span class="arrow__label"><small>Προηγούμενο</small><b class="arrow__name"></b></span>
@@ -303,12 +306,12 @@
       </header>
       <div class="studio">
         <figure class="studio__fig">
-          <img src="img/schedia.webp" alt="Τρισδιάστατο σχέδιο καταστήματος ενδυμάτων με ράφια τοίχου, μπλε πάγκους και κυκλικά φωτιστικά οροφής" width="702" height="420" loading="lazy">
+          <img src="img/schedia.webp" alt="Τρισδιάστατο σχέδιο καταστήματος ενδυμάτων με ράφια τοίχου, μπλε πάγκους και κυκλικά φωτιστικά οροφής" width="1600" height="960" loading="lazy">
           <figcaption><b>Σχέδια</b> Κάθε έργο ξεκινά με κάτοψη και 3D μελέτη.</figcaption>
         </figure>
         <div class="stats">
           <div class="stat" style="--c:#ffd23f"><b>1978</b><span>στον εξοπλισμό καταστημάτων</span></div>
-          <div class="stat" style="--c:#ff6b4a"><b>19</b><span>τύποι καταστημάτων στα έργα μας</span></div>
+          <div class="stat" style="--c:#ff6b4a"><b>13</b><span>κατηγορίες καταστημάτων στα έργα μας</span></div>
           <div class="stat" style="--c:#2ec4a6"><b>7+</b><span>υλικά: ξύλο, μελαμίνη, λάκα, σίδηρος, κρύσταλλο, αλουμίνιο, inox</span></div>
           <div class="stat" style="--c:#a78bfa"><b>360°</b><span>μελέτη, παραγωγή, μεταφορά, τοποθέτηση</span></div>
         </div>
